@@ -18,7 +18,7 @@ Em um jogo de futebol, cada time possui 11 jogadores titulares, e se baseando na
   - 1 Meia;
   - 2 Atacantes.
 
-Mais um jogador foi adicionado em cada posição, resultando no total de 17 jogadores:
+Para fins de concorência, mais um jogador foi adicionado em cada posição, resultando no total de 17 jogadores, sendo eles definidos abaixo para cada time:
 
 #### Escalação do Brasil (17 jogadores):
   - Goleiros: Marcos e Rogerio Ceni;
@@ -46,14 +46,25 @@ A partida ocorre infinitamente, e os jogadores de cada time foram divididos em t
   - Meia;
   - Atacante.
 
-Para fins de fidedignidade do jogo cada posição possui um conjunto de ações que podem ser realizadas, sendo elas:
-  - Goleiro: defender a bola, passar a bola;
-  - Zagueiro: tomar a bola, passar a bola;
-  - Lateral: cruzar a bola, passar a bola;
-  - Volante: tomar a bola, passar a bola;
-  - Meia:	chutar a bola, passar a bola;
-  - Atacante: chutar a bola.
-  
+Para fins de fidedignidade do jogo, cada posição possui um conjunto de ações que podem ser realizadas e um pedaço do campo, sendo elas:
+  - Goleiro (Gol de defesa)
+    - Defender uma bola chutada em direção ao seu gol; 
+    - Tocar a bola para um zagueiro de seu time.
+  - Zagueiro (Defesa)
+    - Tomar a bola de um atacante adversário e toca-la para um zagueiro de seu time; 
+    - Tocar a bola para um lateral de seu time.
+  - Lateral (Lados)
+    - Cruzar a bola para um atacante de seu time; 
+    - Tocar a bola para um volante de seu time;
+  - Volante (Meio Defensivo)
+    - Tomar a bola de um meia adversário;
+    - Tocar a bola para um meia de seu time;
+  - Meia (Meio Ofensivo)
+    - Chutar a bola em direção ao gol adversário;
+    - Tocar a bola para um atacante de seu time;
+  - Atacante (Ataque)
+    - Chutar a bola em direção ao gol adversário.
+
 O time nunca passa a bola para trás, sempre passa para frente buscando o gol. 
  
 A **segunda região crítica** implementada é a bola, pois entre os 22 processos ativos, somente 1 pode acessar a bola.
