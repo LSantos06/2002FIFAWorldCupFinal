@@ -64,7 +64,7 @@
  *
  * - REGIAO CRITICA: Apenas 1 jogador pode possuir a bola entre os 22 em campo;
  *
- * - REGIAO CRITICA: O jogador nao pode sair da sua parte do campo (cada posicao
+ * - O jogador nao pode sair da sua parte do campo (cada posicao
  * possui uma parte especifica do campo):
  *		- Goleiro: GOL;
  *		- Zagueiro: DEFESA;
@@ -103,13 +103,6 @@ pthread_mutex_t lock_volantes_Brasil;
 pthread_mutex_t lock_meias_Brasil;
 pthread_mutex_t lock_atacantes_Brasil;
 
-sem_t sem_goleiros_Brasil;
-sem_t sem_zagueiros_Brasil;
-sem_t sem_laterais_Brasil;
-sem_t sem_volantes_Brasil;
-sem_t sem_meias_Brasil;
-sem_t sem_atacantes_Brasil;
-
 int escalacao_goleiro_Brasil = 0;
 int escalacao_zagueiros_Brasil = 0;
 int escalacao_laterais_Brasil = 0;
@@ -139,13 +132,6 @@ pthread_mutex_t lock_volantes_Alemanha;
 pthread_mutex_t lock_meias_Alemanha;
 pthread_mutex_t lock_atacantes_Alemanha;
 
-sem_t sem_goleiros_Alemanha;
-sem_t sem_zagueiros_Alemanha;
-sem_t sem_laterais_Alemanha;
-sem_t sem_volantes_Alemanha;
-sem_t sem_meias_Alemanha;
-sem_t sem_atacantes_Alemanha;
-
 int escalacao_goleiro_Alemanha = 0;
 int escalacao_zagueiros_Alemanha = 0;
 int escalacao_laterais_Alemanha = 0;
@@ -172,6 +158,8 @@ pthread_mutex_t lock_regiao = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t lock_gol = PTHREAD_MUTEX_INITIALIZER;
 // Bola
 pthread_mutex_t lock_bola = PTHREAD_MUTEX_INITIALIZER;
+// Banco de reservas
+sem_t sem_banco;
 
 /*************************************************************/
 // Time que possui a bola
@@ -246,7 +234,7 @@ void * thread_goleiro_Brasil(void *argumento){
 		}
 		// Se a preferencia do goleiro for a menor possivel (1), ele fica no banco
 		if(titular_goleiro_Brasil[id] == (NUM_GOLEIRO+1)){
-			sem_wait(&sem_goleiros_Brasil);
+			sem_wait(&sem_banco);
 		}
 
 		// Se a regiao for o gol do Brasil
@@ -347,7 +335,7 @@ void * thread_zagueiro_Brasil(void *argumento){
 		}
 		// Se a preferencia do zagueiro for a menor possivel (3), ele fica no banco
 		if(titular_zagueiros_Brasil[id] == (NUM_ZAGUEIROS+1)){
-			sem_wait(&sem_zagueiros_Brasil);
+			sem_wait(&sem_banco);
 		}
 
 		// Se a regiao for a defesa do Brasil
@@ -433,7 +421,7 @@ void * thread_lateral_Brasil(void *argumento){
 		}
 		// Se a preferencia do zagueiro for a menor possivel (2), ele fica no banco
 		if(titular_laterais_Brasil[id] == (NUM_LATERAIS+1)){
-			sem_wait(&sem_laterais_Brasil);
+			sem_wait(&sem_banco);
 		}
 
 		// Se a regiao for os lados do campo
@@ -520,7 +508,7 @@ void * thread_volante_Brasil(void *argumento){
 		}
 		// Se a preferencia do volante for a menor possivel (2), ele fica no banco
 		if(titular_volantes_Brasil[id] == (NUM_VOLANTES+1)){
-			sem_wait(&sem_volantes_Brasil);
+			sem_wait(&sem_banco);
 		}
 
 		// Se a regiao for o meio de campo defensivo do Brasil
@@ -602,7 +590,7 @@ void * thread_meia_Brasil(void *argumento){
 		}
 		// Se a preferencia do meia for a menor possivel (2), ele fica no banco
 		if(titular_meia_Brasil[id] == (NUM_MEIA+1)){
-			sem_wait(&sem_meias_Brasil);
+			sem_wait(&sem_banco);
 		}
 
 		// Se a regiao for o meio de campo ofensivo do Brasil
@@ -685,7 +673,7 @@ void * thread_atacante_Brasil(void *argumento){
 		}
 		// Se a preferencia do atacante for a menor possivel (2), ele fica no banco
 		if(titular_atacantes_Brasil[id] == (NUM_ATACANTES+1)){
-			sem_wait(&sem_atacantes_Brasil);
+			sem_wait(&sem_banco);
 		}
 
 		// Se a regiao for o ataque do Brasil
@@ -752,7 +740,7 @@ void * thread_goleiro_Alemanha(void *argumento){
 		}
 		// Se a preferencia do goleiro for a menor possivel (1), ele fica no banco
 		if(titular_goleiro_Alemanha[id] == (NUM_GOLEIRO+1)){
-			sem_wait(&sem_goleiros_Alemanha);
+			sem_wait(&sem_banco);
 		}
 
 		// Se a regiao for o gol da Alemanha
@@ -854,7 +842,7 @@ void * thread_zagueiro_Alemanha(void *argumento){
 		}
 		// Se a preferencia do zagueiro for a menor possivel (3), ele fica no banco
 		if(titular_zagueiros_Alemanha[id] == (NUM_ZAGUEIROS+1)){
-			sem_wait(&sem_zagueiros_Alemanha);
+			sem_wait(&sem_banco);
 		}
 
 		// Se a regiao for a defesa do Alemanha
@@ -941,7 +929,7 @@ void * thread_lateral_Alemanha(void *argumento){
 		}
 		// Se a preferencia do zagueiro for a menor possivel (2), ele fica no banco
 		if(titular_laterais_Alemanha[id] == (NUM_LATERAIS+1)){
-			sem_wait(&sem_laterais_Alemanha);
+			sem_wait(&sem_banco);
 		}
 
 		// Se a regiao for os lados do campo
@@ -1030,7 +1018,7 @@ void * thread_volante_Alemanha(void *argumento){
 		}
 		// Se a preferencia do volante for a menor possivel (2), ele fica no banco
 		if(titular_volantes_Alemanha[id] == (NUM_VOLANTES+1)){
-			sem_wait(&sem_volantes_Alemanha);
+			sem_wait(&sem_banco);
 		}
 
 		// Se a regiao for o meio de campo defensivo da Alemanha
@@ -1114,7 +1102,7 @@ void * thread_meia_Alemanha(void *argumento){
 		}
 		// Se a preferencia do meia for a menor possivel (1), ele fica no banco
 		if(titular_meia_Alemanha[id] == (NUM_MEIA+1)){
-			sem_wait(&sem_meias_Alemanha);
+			sem_wait(&sem_banco);
 		}
 
 		// Se a regiao for o meio de campo ofensivo da Alemanha
@@ -1198,7 +1186,7 @@ void * thread_atacante_Alemanha(void *argumento){
 		}
 		// Se a preferencia do atacante for a menor possivel (2), ele fica no banco
 		if(titular_atacantes_Alemanha[id] == (NUM_ATACANTES+1)){
-			sem_wait(&sem_atacantes_Alemanha);
+			sem_wait(&sem_banco);
 		}
 
 		// Se a regiao for o meio de campo ofensivo da Alemanha
@@ -1257,21 +1245,8 @@ int main(){
 
 	printf("\nTITULARES:\n");
 
-	// Inicializando os semaforos da escalacao do Brasil
-	sem_init(&sem_goleiros_Brasil, 0, 0);
-	sem_init(&sem_zagueiros_Brasil, 0, 0);
-	sem_init(&sem_laterais_Brasil, 0, 0);
-	sem_init(&sem_volantes_Brasil, 0, 0);
-	sem_init(&sem_meias_Brasil, 0, 0);
-	sem_init(&sem_atacantes_Brasil, 0, 0);
-
-	// Inicializando os semaforos da escalacao da Alemanha
-	sem_init(&sem_goleiros_Alemanha, 0, 0);
-	sem_init(&sem_zagueiros_Alemanha, 0, 0);
-	sem_init(&sem_laterais_Alemanha, 0, 0);
-	sem_init(&sem_volantes_Alemanha, 0, 0);
-	sem_init(&sem_meias_Alemanha, 0, 0);
-	sem_init(&sem_atacantes_Alemanha, 0, 0);
+	// Inicializando o semaforo do banco de reservas
+	sem_init(&sem_banco, 0, 0);
 
 	/* Criacao das threads de ambos os times */
 	for(indice = 0; indice <= NUM_GOLEIRO; indice++){
