@@ -54,7 +54,7 @@ A partida ocorre infinitamente, e os jogadores de cada time foram divididos em t
   - Atacante.
 
 <p align="center">
-  <img src="Campo.png">
+  <img src="campo.png">
   <br>
   <t>Figura 2: Divisão do campo de futebol em áreas para facilitar a implementação</t>
   <br>
