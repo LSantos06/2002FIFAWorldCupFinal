@@ -17,6 +17,13 @@ Em um jogo de futebol, cada time possui 11 jogadores titulares, e se baseando na
   - 2 Volantes;
   - 1 Meia;
   - 2 Atacantes.
+  
+<p align="center">
+  <img src="wiki.png">
+  <br>
+  <t>Figura 1: Times titulares de ambas as seleções</t>
+  <br>
+</p>
 
 Para fins de concorência, mais um jogador foi adicionado em cada posição, resultando no total de 17 jogadores, sendo eles definidos abaixo para cada time:
 
@@ -46,24 +53,30 @@ A partida ocorre infinitamente, e os jogadores de cada time foram divididos em t
   - Meia;
   - Atacante.
 
+<p align="center">
+  <img src="Campo.png">
+  <br>
+  <t>Figura 2: Divisão do campo de futebol em áreas para facilitar a implementação</t>
+  <br>
+</p>
 Para fins de fidedignidade do jogo, cada posição possui um conjunto de ações que podem ser realizadas e um pedaço do campo, sendo elas:
-  - Goleiro (Gol de defesa)
+  - Goleiro (Gol de defesa, *em branco na Figura 2*)
     - Defender uma bola chutada em direção ao seu gol; 
     - Tocar a bola para um zagueiro de seu time.
-  - Zagueiro (Defesa)
+  - Zagueiro (Defesa, *em cinza na Figura 2*)
     - Tomar a bola de um atacante adversário e toca-la para um zagueiro de seu time; 
     - Tocar a bola para um lateral de seu time.
-  - Lateral (Lados)
+  - Lateral (Lados, *em verde na Figura 2*)
     - Cruzar a bola para um atacante de seu time; 
     - Tocar a bola para um volante de seu time;
-  - Volante (Meio Defensivo)
+  - Volante (Meio Defensivo, *em azul na Figura 2*)
     - Tomar a bola de um meia adversário;
     - Tocar a bola para um meia de seu time;
-  - Meia (Meio Ofensivo)
+  - Meia (Meio Ofensivo, *em amarelo na Figura 2*)
     - Chutar a bola em direção ao gol adversário;
     - Tocar a bola para um atacante de seu time;
-  - Atacante (Ataque)
-    - Chutar a bola em direção ao gol adversário.
+  - Atacante (Ataque, *em laranja na Figura 2*)
+    - Chutar a bola em direção ao gol adversário (*em vermelho na Figura 2*).
 
 O time nunca passa a bola para trás, sempre passa para frente buscando o gol. 
  
