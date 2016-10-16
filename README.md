@@ -81,3 +81,9 @@ Para fins de fidedignidade do jogo, cada posição possui um conjunto de ações
 O time nunca passa a bola para trás, sempre passa para frente buscando o gol. 
  
 A **segunda região crítica** implementada é a bola, pois entre os 22 processos ativos, somente 1 pode acessar a bola.
+
+## Fontes
+  - Escalação da Alemanha: http://www.dw.com/pt-br/titulares-da-seleção-alemã/a-514243
+  - Escalação do Brasil: https://jogosdaselecaobrasileira.wordpress.com/2002/07/01/elenco-da-selecao-brasileira-na-copa-do-mundo-de-2002/
+  - Final da Copa do Mundo FIFA 2002: https://pt.wikipedia.org/wiki/Final_da_Copa_do_Mundo_FIFA_de_2002
+  - Teoria: http://www.cic.unb.br/~alchieri/
