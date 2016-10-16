@@ -1,4 +1,4 @@
-IDEAIS
+IDEIAS
 -   Estadio
     -   NFL
     -   acesso, lojas, alimentacao, assentos, bola
@@ -27,4 +27,4 @@ ter a bola (regiao critica).
         - meia joga no meio de campo, os jogadores de outras posicoes nao podem
         tomar a bola, e assim por diante;
         - meio campo (regiao critica).
-    - Antes do jogo, escalacao, substituicao
+    - Antes do jogo, escalacao, substituicao...
